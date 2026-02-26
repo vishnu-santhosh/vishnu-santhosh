@@ -15,7 +15,7 @@ export default function App() {
   }
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL || '/'}>
       <Routes>
         <Route path="/" element={<Home articles={articles} />} />
         <Route path="/articles" element={<Writing />} />
