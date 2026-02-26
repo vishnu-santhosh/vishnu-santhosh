@@ -196,7 +196,24 @@ Your site will be available at:
 - `https://your-username.github.io/` (if repo is named `{username}.github.io`)
 - `https://your-username.github.io/repo-name/` (for other repo names)
 
-> **Note:** If deploying to a subdirectory, edit `vite.config.js` and change `base: '/terminal-blog/'` to your repo name (e.g., `base: '/my-blog/'`), then rebuild and push.
+#### Step 5: Deploy to Root URL (Optional)
+If you want your site at `https://your-username.github.io/` (root URL):
+
+1. **Rename your repository:**
+   - Go to repository **Settings**
+   - Under "Repository name", change `repo-name` to `your-username.github.io`
+   - Click "Rename"
+
+2. **Update base path:**
+   - Edit `vite.config.js`: change `base: '/repo-name/'` to `base: '/'`
+   - Commit and push:
+     ```bash
+     git add . && git commit -m "Update base path for root deployment" && git push origin main
+     ```
+
+3. **Wait for deployment** (~1-2 minutes)
+
+> **Note:** If you rename to `{username}.github.io`, this repo will replace your GitHub profile README. Your profile will no longer show a custom intro at `github.com/your-username`.
 
 ### Vercel
 
