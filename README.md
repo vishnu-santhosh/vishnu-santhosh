@@ -168,17 +168,35 @@ The default font is JetBrains Mono. To change, edit the `@import` in `src/index.
 
 ### GitHub Pages (Recommended)
 
+#### Step 1: Enable Template Repository (Optional)
+If you want others to use this as a template:
 1. Go to repository **Settings**
-2. Navigate to **Pages**
-3. Under **Source**, select **GitHub Actions**
-4. Push any change to `main` branch
-5. Workflow will automatically deploy
+2. Scroll to **"Template repository"**
+3. Check **"Template repository"**
+4. Click **Save**
 
+This enables the "Use this template" button on the repo page.
+
+#### Step 2: Enable GitHub Pages
+1. Go to repository **Settings** → **Pages**
+2. Under **"Build and deployment"** → **Source**, select **GitHub Actions**
+3. Click **Save**
+
+#### Step 3: Trigger Deploy
+1. Push any change to `main` branch:
+   ```bash
+   git commit --allow-empty -m "trigger deploy"
+   git push origin main
+   ```
+2. Go to **Actions** tab to monitor deployment
+3. Wait for the workflow to complete (green checkmark)
+
+#### Step 4: Access Your Site
 Your site will be available at:
 - `https://your-username.github.io/` (if repo is named `{username}.github.io`)
 - `https://your-username.github.io/repo-name/` (for other repo names)
 
-> **Note:** If deploying to a subdirectory (e.g., `https://your-username.github.io/repo-name/`), edit `vite.config.js` and change `base: '/'` to `base: '/repo-name/'`, then rebuild and push.
+> **Note:** If deploying to a subdirectory, edit `vite.config.js` and change `base: '/terminal-blog/'` to your repo name (e.g., `base: '/my-blog/'`), then rebuild and push.
 
 ### Vercel
 
