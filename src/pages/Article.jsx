@@ -1,0 +1,104 @@
+import { Link, useParams } from 'react-router-dom';
+import { navigation } from '../config';
+import Logo from '../components/Logo';
+
+export default function Article({ articles }) {
+  const { slug } = useParams();
+  const article = articles.find(a => a.slug === slug);
+
+  if (!article) {
+    return (
+      <div className="min-h-screen bg-terminal-bg text-terminal-green p-4 sm:p-8">
+        <div className="scanlines" />
+        <div className="max-w-3xl mx-auto">
+          <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-12 gap-4">
+            <Logo />
+            <Nav />
+          </header>
+          <h1 className="text-xl">[ERROR] Article not found</h1>
+          <Link to="/" className="text-terminal-cyan hover:underline">
+            [ Return home ]
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-terminal-bg text-terminal-green p-4 sm:p-8">
+      <div className="scanlines" />
+      <div className="max-w-3xl mx-auto">
+        
+        {/* Header */}
+        <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-12 gap-4">
+          <Logo />
+          <Nav />
+        </header>
+        
+        <Link 
+          to="/articles" 
+          className="text-terminal-green hover:underline text-sm mb-8 block cursor-pointer"
+        >
+          [ .. back to articles ]
+        </Link>
+
+        <article>
+          <header className="mb-8">
+            <div className="text-gray-500 mb-2">
+              [{article.date}]
+            </div>
+            <h1 className="text-xl sm:text-2xl font-bold glow mb-4">
+              {article.title}
+            </h1>
+            {article.tags && (
+              <div className="flex flex-wrap gap-2">
+                {article.tags.map(tag => (
+                  <span 
+                    key={tag}
+                    className="text-xs text-gray-600 bg-gray-900 px-2 py-1"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+          </header>
+
+          <div 
+            className="markdown-content"
+            dangerouslySetInnerHTML={{ __html: article.content }}
+          />
+        </article>
+
+        <footer className="border-t border-gray-800 pt-6 pb-8 text-sm mt-16">
+          <div className="text-gray-500">
+            [OK] End of article.
+          </div>
+        </footer>
+      </div>
+    </div>
+  );
+}
+
+function Nav() {
+  return (
+    <nav className="flex items-center gap-4">
+      {navigation.slice(1).map((item) => (
+        <NavLink key={item.path} to={item.path}>
+          {item.label}
+        </NavLink>
+      ))}
+    </nav>
+  );
+}
+
+function NavLink({ to, children }) {
+  return (
+    <Link
+      to={to}
+      className="text-sm transition-all duration-200 hover:text-terminal-green hover:underline cursor-pointer"
+    >
+      {children}
+    </Link>
+  );
+}
