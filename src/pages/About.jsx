@@ -9,7 +9,7 @@ export default function About() {
       <div className="max-w-3xl mx-auto">
         
         {/* Header */}
-        <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-12 gap-4">
+        <header className="flex flex-row items-center justify-between mb-12 gap-4">
           <Logo />
           <Nav />
         </header>
@@ -127,10 +127,10 @@ export default function About() {
         </div>
 
         <footer className="border-t border-gray-800 pt-6 pb-8 text-sm mt-16">
-          <div className="text-gray-500">
+          <div className="text-gray-500 text-center">
             {siteConfig.name}
           </div>
-          <div className="flex flex-wrap gap-4 text-xs sm:text-sm mt-4">
+          <div className="flex flex-wrap gap-4 text-sm sm:text-base mt-4 justify-center">
             <a 
               href="/feed.xml" 
               className="hover:text-terminal-green cursor-pointer"
@@ -169,7 +169,7 @@ export default function About() {
 
 function Nav() {
   return (
-    <nav className="flex items-center gap-4">
+    <nav className="flex items-center gap-3 sm:gap-4">
       {navigation.slice(1).map((item) => (
         <NavLink key={item.path} to={item.path}>
           {item.label}
@@ -183,7 +183,7 @@ function NavLink({ to, children }) {
   return (
     <Link
       to={to}
-      className="text-sm transition-all duration-200 hover:text-terminal-green hover:underline cursor-pointer"
+      className="text-sm sm:text-base transition-all duration-200 hover:text-terminal-green hover:underline cursor-pointer"
     >
       {children}
     </Link>

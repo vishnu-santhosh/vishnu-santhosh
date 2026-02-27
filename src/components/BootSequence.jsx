@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { siteConfig } from '../config';
 
 const getBootLines = (username) => [
-  `[    0.000000] Linux version 6.6.6-${username}s (${username}@dev.local)`,
+  `[    0.000000] Linux version 6.6.6-${username}@dev`,
   '[    0.000001] Boot config: terminal_mode=enabled',
   '[    0.000002] Memory: 32768MB available',
   '[    0.000003] CPU: AMD EPYC @ 3.0GHz',
@@ -40,7 +40,7 @@ export default function BootSequence({ onComplete }) {
   }, [index, onComplete]);
 
   return (
-    <div className="min-h-screen bg-terminal-bg p-4 sm:p-8 text-sm sm:text-base overflow-hidden">
+    <div className="min-h-screen bg-terminal-bg p-4 sm:p-8 text-xs sm:text-base overflow-hidden">
       <div className="max-w-3xl mx-auto">
         {bootLines.slice(0, index).map((line, i) => (
           <div key={i} className="whitespace-nowrap">{line}</div>

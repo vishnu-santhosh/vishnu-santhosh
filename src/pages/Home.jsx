@@ -13,7 +13,7 @@ export default function Home() {
       <div className="max-w-3xl mx-auto">
         
         {/* Header */}
-        <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-12 gap-4">
+        <header className="flex flex-row items-center justify-between mb-12 gap-4">
           <Logo />
           <Nav />
         </header>
@@ -122,7 +122,7 @@ export default function Home() {
 
         {/* Footer */}
         <footer className="border-t border-gray-800 pt-6 pb-8">
-          <div className="flex flex-wrap gap-4 text-sm">
+          <div className="flex flex-wrap gap-4 text-sm justify-center">
             <a 
               href={siteConfig.social.github} 
               className="hover:text-terminal-green cursor-pointer"
@@ -146,7 +146,7 @@ export default function Home() {
               Email
             </a>
           </div>
-          <div className="mt-4 text-gray-600 text-xs">
+          <div className="mt-4 text-gray-600 text-xs text-center">
             © {new Date().getFullYear()} {siteConfig.name}
           </div>
         </footer>
@@ -158,7 +158,7 @@ export default function Home() {
 
 function Nav() {
   return (
-    <nav className="flex items-center gap-4">
+    <nav className="flex items-center gap-3 sm:gap-4">
       {navigation.slice(1).map((item) => (
         <NavLink key={item.path} to={item.path}>
           {item.label}
@@ -172,7 +172,7 @@ function NavLink({ to, children }) {
   return (
     <Link
       to={to}
-      className="text-sm transition-all duration-200 hover:text-terminal-green hover:underline cursor-pointer"
+      className="text-sm sm:text-base transition-all duration-200 hover:text-terminal-green hover:underline cursor-pointer"
     >
       {children}
     </Link>

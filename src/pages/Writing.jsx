@@ -25,7 +25,7 @@ export default function Writing() {
       <div className="max-w-3xl mx-auto">
         
         {/* Header */}
-        <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-12 gap-4">
+        <header className="flex flex-row items-center justify-between mb-12 gap-4">
           <Logo />
           <Nav />
         </header>
@@ -63,7 +63,7 @@ export default function Writing() {
         </div>
 
         <footer className="border-t border-gray-800 pt-6 pb-8 text-sm mt-16">
-          <div className="text-gray-500">
+          <div className="text-gray-500 text-center">
             [OK] End of file.
           </div>
         </footer>
@@ -74,7 +74,7 @@ export default function Writing() {
 
 function Nav() {
   return (
-    <nav className="flex items-center gap-4">
+    <nav className="flex items-center gap-3 sm:gap-4">
       {navigation.slice(1).map((item) => (
         <NavLink key={item.path} to={item.path}>
           {item.label}
@@ -88,7 +88,7 @@ function NavLink({ to, children }) {
   return (
     <Link
       to={to}
-      className="text-sm transition-all duration-200 hover:text-terminal-green hover:underline cursor-pointer"
+      className="text-sm sm:text-base transition-all duration-200 hover:text-terminal-green hover:underline cursor-pointer"
     >
       {children}
     </Link>
