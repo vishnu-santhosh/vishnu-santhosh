@@ -118,6 +118,12 @@ function Nav({ onSearchClick }) {
       >
         search
       </button>
+      <Link
+        to="/graph"
+        className="text-sm sm:text-base transition-all duration-200 hover:text-terminal-green hover:underline cursor-pointer"
+      >
+        graph
+      </Link>
     </nav>
   );
 }

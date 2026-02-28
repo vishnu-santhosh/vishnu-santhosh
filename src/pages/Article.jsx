@@ -2,6 +2,28 @@ import { Link, useParams } from 'react-router-dom';
 import { navigation } from '../config';
 import Logo from '../components/Logo';
 import { formatDate, calculateReadTime } from '../utils/readTime';
+import { getBacklinks } from '../utils/graph';
+
+function processWikilinks(content, articles) {
+  const slugToTitle = {};
+  articles.forEach(a => slugToTitle[a.slug] = a.title);
+  
+  const processed = content.replace(
+    /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,
+    (match, slug, display) => {
+      const articleSlug = slug.trim().toLowerCase().replace(/\s+/g, '-');
+      const title = slugToTitle[articleSlug] || display || slug;
+      const exists = articles.find(a => a.slug === articleSlug);
+      
+      if (exists) {
+        return `<a href="#/articles/${articleSlug}" class="wikilink">${title}</a>`;
+      }
+      return `<span class="wikilink-missing">${title}</span>`;
+    }
+  );
+  
+  return processed;
+}
 
 export default function Article({ articles, onSearchClick }) {
   const { slug } = useParams();
@@ -68,8 +90,10 @@ export default function Article({ articles, onSearchClick }) {
 
           <div 
             className="markdown-content"
-            dangerouslySetInnerHTML={{ __html: article.content }}
+            dangerouslySetInnerHTML={{ __html: processWikilinks(article.content, articles) }}
           />
+
+          <BacklinksSection slug={article.slug} articles={articles} />
         </article>
 
         <footer className="border-t border-gray-800 pt-6 pb-8 text-sm mt-16">
@@ -97,6 +121,12 @@ function Nav({ onSearchClick }) {
       >
         search
       </button>
+      <Link
+        to="/graph"
+        className="text-sm sm:text-base transition-all duration-200 hover:text-terminal-green hover:underline cursor-pointer"
+      >
+        graph
+      </Link>
     </nav>
   );
 }
@@ -109,5 +139,36 @@ function NavLink({ to, children }) {
     >
       {children}
     </Link>
+  );
+}
+
+function BacklinksSection({ slug, articles }) {
+  const backlinks = getBacklinks(articles, slug);
+  
+  if (backlinks.length === 0) return null;
+  
+  return (
+    <div className="border-t border-gray-800 mt-12 pt-8">
+      <h3 className="text-lg font-bold text-terminal-blue mb-4">
+        ### Linked from
+      </h3>
+      <ul className="space-y-3">
+        {backlinks.map(backlink => (
+          <li key={backlink.slug}>
+            <Link 
+              to={`/articles/${backlink.slug}`}
+              className="text-terminal-cyan hover:underline"
+            >
+              {backlink.title}
+            </Link>
+            {backlink.sharedTags.length > 0 && (
+              <span className="text-gray-500 text-sm ml-2">
+                (via {backlink.sharedTags.join(', ')})
+              </span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

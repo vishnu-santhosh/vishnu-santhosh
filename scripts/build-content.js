@@ -16,6 +16,19 @@ const outputFile = path.join(outputDir, 'articles.json');
 
 const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
+function parseWikilinks(content) {
+  const regex = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
+  const links = [];
+  let match;
+  
+  while ((match = regex.exec(content)) !== null) {
+    const linkText = match[1].trim();
+    links.push(linkText.toLowerCase().replace(/\s+/g, '-'));
+  }
+  
+  return [...new Set(links)];
+}
+
 async function processMarkdown(filePath) {
   const fileContent = fs.readFileSync(filePath, 'utf8');
   const { data, content } = matter(fileContent);
@@ -35,6 +48,7 @@ async function processMarkdown(filePath) {
     year: dateObj.getFullYear().toString(),
     monthDay: `${monthNames[dateObj.getMonth()]} ${dateObj.getDate()}`,
     content: processedContent.toString(),
+    outgoingLinks: parseWikilinks(content),
     filename: path.basename(filePath)
   };
 }

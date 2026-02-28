@@ -221,6 +221,21 @@ a:hover {
   text-shadow: 0 0 5px var(--color-terminal-cyan);
 }
 
+/* Wikilinks */
+.markdown-content .wikilink {
+  color: var(--color-terminal-green);
+  text-decoration: underline;
+}
+
+.markdown-content .wikilink:hover {
+  text-shadow: 0 0 5px var(--color-terminal-green);
+}
+
+.markdown-content .wikilink-missing {
+  color: #6b7280;
+  text-decoration: line-through;
+}
+
 /* Horizontal rule */
 .markdown-content hr {
   border: none;
