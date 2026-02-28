@@ -15,7 +15,7 @@ function groupByYear(articles) {
   return groups;
 }
 
-export default function Writing() {
+export default function Writing({ onSearchClick }) {
   const groupedArticles = groupByYear(articles);
   const years = Object.keys(groupedArticles).sort((a, b) => b - a);
 
@@ -27,7 +27,7 @@ export default function Writing() {
         {/* Header */}
         <header className="flex flex-row items-center justify-between mb-12 gap-4">
           <Logo />
-          <Nav />
+          <Nav onSearchClick={onSearchClick} />
         </header>
 
         <div className="space-y-12">
@@ -72,7 +72,7 @@ export default function Writing() {
   );
 }
 
-function Nav() {
+function Nav({ onSearchClick }) {
   return (
     <nav className="flex items-center gap-3 sm:gap-4">
       {navigation.slice(1).map((item) => (
@@ -80,6 +80,13 @@ function Nav() {
           {item.label}
         </NavLink>
       ))}
+      <button
+        onClick={onSearchClick}
+        className="text-sm sm:text-base transition-all duration-200 hover:text-terminal-green hover:underline cursor-pointer"
+        title="Search (Ctrl+K)"
+      >
+        search
+      </button>
     </nav>
   );
 }

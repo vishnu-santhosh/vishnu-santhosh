@@ -3,7 +3,7 @@ import { siteConfig, navigation } from '../config';
 import Logo from '../components/Logo';
 import articles from '../data/articles.json';
 
-export default function Home() {
+export default function Home({ onSearchClick }) {
   const latestArticles = articles.slice(0, 4);
   const currentJob = siteConfig.experience[0];
 
@@ -15,7 +15,7 @@ export default function Home() {
         {/* Header */}
         <header className="flex flex-row items-center justify-between mb-12 gap-4">
           <Logo />
-          <Nav />
+          <Nav onSearchClick={onSearchClick} />
         </header>
 
         {/* Intro */}
@@ -156,7 +156,7 @@ export default function Home() {
   );
 }
 
-function Nav() {
+function Nav({ onSearchClick }) {
   return (
     <nav className="flex items-center gap-3 sm:gap-4">
       {navigation.slice(1).map((item) => (
@@ -164,6 +164,13 @@ function Nav() {
           {item.label}
         </NavLink>
       ))}
+      <button
+        onClick={onSearchClick}
+        className="text-sm sm:text-base transition-all duration-200 hover:text-terminal-green hover:underline cursor-pointer"
+        title="Search (Ctrl+K)"
+      >
+        search
+      </button>
     </nav>
   );
 }

@@ -2,7 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import { navigation } from '../config';
 import Logo from '../components/Logo';
 
-export default function Article({ articles }) {
+export default function Article({ articles, onSearchClick }) {
   const { slug } = useParams();
   const article = articles.find(a => a.slug === slug);
 
@@ -13,7 +13,7 @@ export default function Article({ articles }) {
         <div className="max-w-3xl mx-auto">
           <header className="flex flex-row items-center justify-between mb-12 gap-4">
             <Logo />
-            <Nav />
+            <Nav onSearchClick={onSearchClick} />
           </header>
           <h1 className="text-xl">[ERROR] Article not found</h1>
           <Link to="/" className="text-terminal-cyan hover:underline">
@@ -32,7 +32,7 @@ export default function Article({ articles }) {
         {/* Header */}
         <header className="flex flex-row items-center justify-between mb-12 gap-4">
           <Logo />
-          <Nav />
+          <Nav onSearchClick={onSearchClick} />
         </header>
         
         <Link 
@@ -80,7 +80,7 @@ export default function Article({ articles }) {
   );
 }
 
-function Nav() {
+function Nav({ onSearchClick }) {
   return (
     <nav className="flex items-center gap-3 sm:gap-4">
       {navigation.slice(1).map((item) => (
@@ -88,6 +88,13 @@ function Nav() {
           {item.label}
         </NavLink>
       ))}
+      <button
+        onClick={onSearchClick}
+        className="text-sm sm:text-base transition-all duration-200 hover:text-terminal-green hover:underline cursor-pointer"
+        title="Search (Ctrl+K)"
+      >
+        search
+      </button>
     </nav>
   );
 }

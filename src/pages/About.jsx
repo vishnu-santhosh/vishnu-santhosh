@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { siteConfig, navigation } from '../config';
 import Logo from '../components/Logo';
 
-export default function About() {
+export default function About({ onSearchClick }) {
   return (
     <div className="min-h-screen bg-terminal-bg text-terminal-green p-4 sm:p-8">
       <div className="scanlines" />
@@ -11,7 +11,7 @@ export default function About() {
         {/* Header */}
         <header className="flex flex-row items-center justify-between mb-12 gap-4">
           <Logo />
-          <Nav />
+          <Nav onSearchClick={onSearchClick} />
         </header>
 
         <div className="space-y-8 text-sm leading-relaxed">
@@ -167,7 +167,7 @@ export default function About() {
   );
 }
 
-function Nav() {
+function Nav({ onSearchClick }) {
   return (
     <nav className="flex items-center gap-3 sm:gap-4">
       {navigation.slice(1).map((item) => (
@@ -175,6 +175,13 @@ function Nav() {
           {item.label}
         </NavLink>
       ))}
+      <button
+        onClick={onSearchClick}
+        className="text-sm sm:text-base transition-all duration-200 hover:text-terminal-green hover:underline cursor-pointer"
+        title="Search (Ctrl+K)"
+      >
+        search
+      </button>
     </nav>
   );
 }
