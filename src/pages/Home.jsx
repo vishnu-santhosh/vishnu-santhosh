@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { siteConfig, navigation } from '../config';
 import Logo from '../components/Logo';
+import ScrambleText from '../components/ScrambleText';
 import articles from '../data/articles.json';
 
 export default function Home({ onSearchClick }) {
@@ -20,8 +21,8 @@ export default function Home({ onSearchClick }) {
 
         {/* Intro */}
         <section className="mb-12">
-          <p className="text-lg sm:text-xl mb-6 text-terminal-cyan">
-            {siteConfig.tagline}
+          <p className="text-lg sm:text-xl mb-6 text-terminal-cyan font-mono">
+            Notes from <ScrambleText words={siteConfig.cyclingWords} /> who can't stop asking why.
           </p>
           
           <div className="text-gray-300 space-y-2 mb-6">

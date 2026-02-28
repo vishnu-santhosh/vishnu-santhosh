@@ -1,6 +1,16 @@
 export const siteConfig = {
   name: 'Vishnu Santhosh',
   tagline: "Notes from an engineer who can't stop asking why.",
+  cyclingWords: [
+    "an engineer",
+    "a writer", 
+    "a thinker",
+    "a designer",
+    "a developer",
+    "a stoic",
+    "a philosopher",
+    "an alchemist"
+  ],
   username: 'vishnu',
   role: 'Software Engineer',
   currentActivity: 'immersed in Linux kernel and driver development at',
