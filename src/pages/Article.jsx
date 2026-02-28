@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { navigation } from '../config';
 import Logo from '../components/Logo';
+import { calculateReadTime } from '../utils/readTime';
 
 export default function Article({ articles, onSearchClick }) {
   const { slug } = useParams();
@@ -45,7 +46,7 @@ export default function Article({ articles, onSearchClick }) {
         <article>
           <header className="mb-8">
             <div className="text-gray-500 mb-2">
-              [{article.date}]
+              [{article.date}] · {calculateReadTime(article.content)}
             </div>
             <h1 className="text-xl sm:text-2xl font-bold glow mb-4">
               {article.title}
