@@ -51,11 +51,6 @@ export default function Article({ articles, onSearchClick }) {
             <h1 className="text-xl sm:text-2xl font-bold glow mb-4">
               {article.title}
             </h1>
-            {article.excerpt && (
-              <p className="text-gray-400 text-base leading-relaxed mb-4">
-                {article.excerpt}
-              </p>
-            )}
             {article.tags && (
               <div className="flex flex-wrap gap-2">
                 {article.tags.map(tag => (
