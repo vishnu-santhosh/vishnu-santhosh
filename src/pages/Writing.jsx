@@ -43,8 +43,8 @@ export default function Writing({ onSearchClick }) {
                       to={`/articles/${article.slug}`}
                       className="block cursor-pointer"
                     >
-                      <div className="flex">
-                        <span className="text-gray-500 text-sm whitespace-nowrap w-16 flex-shrink-0">
+                      <div className="flex items-start">
+                        <span className="text-gray-500 text-sm whitespace-nowrap w-16 flex-shrink-0 pt-1">
                           {article.monthDay}
                         </span>
                         <div>

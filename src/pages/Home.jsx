@@ -71,8 +71,8 @@ export default function Home({ onSearchClick, onSubscribeClick }) {
             {latestArticles.map((article) => (
               <article key={article.slug}>
                 <Link to={`/articles/${article.slug}`} className="block group">
-                  <div className="flex">
-                    <span className="text-gray-500 text-xs whitespace-nowrap w-24 sm:w-28 flex-shrink-0">
+                  <div className="flex items-start">
+                    <span className="text-gray-500 text-xs whitespace-nowrap w-24 sm:w-28 flex-shrink-0 pt-1">
                       {formatDate(article.date)}
                     </span>
                     <div>
