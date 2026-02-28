@@ -46,7 +46,7 @@ export default function Article({ articles, onSearchClick }) {
         <article>
           <header className="mb-6">
             <div className="text-gray-500 mb-4">
-              [{formatDate(article.date)}] · {calculateReadTime(article.content)}
+              {formatDate(article.date)} · {calculateReadTime(article.content)}
             </div>
             <h1 className="text-xl sm:text-2xl font-bold glow mb-4">
               {article.title}
