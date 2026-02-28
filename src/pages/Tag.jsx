@@ -39,7 +39,7 @@ export default function Tag({ onSearchClick }) {
         {/* Tag Header */}
         <div className="mb-12">
           <h1 className="text-xl sm:text-2xl font-bold text-terminal-green">
-            ## {tag}
+            {tag}
           </h1>
           <p className="text-gray-500 mt-2">
             {filteredArticles.length} article{filteredArticles.length !== 1 ? 's' : ''}
