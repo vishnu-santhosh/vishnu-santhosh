@@ -54,12 +54,13 @@ export default function Article({ articles, onSearchClick }) {
             {article.tags && (
               <div className="flex flex-wrap gap-2">
                 {article.tags.map(tag => (
-                  <span 
+                  <Link 
                     key={tag}
-                    className="text-xs text-gray-600 bg-gray-900 px-2 py-1"
+                    to={`/tags/${tag}`}
+                    className="text-xs text-terminal-green hover:underline bg-gray-900 px-2 py-1"
                   >
                     {tag}
-                  </span>
+                  </Link>
                 ))}
               </div>
             )}

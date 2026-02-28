@@ -6,6 +6,7 @@ import SubscribeModal from './components/SubscribeModal';
 import Home from './pages/Home';
 import Writing from './pages/Writing';
 import Article from './pages/Article';
+import Tag from './pages/Tag';
 import About from './pages/About';
 import articles from './data/articles.json';
 import { siteConfig } from './config';
@@ -51,6 +52,7 @@ export default function App() {
         <Route path="/" element={<Home articles={articles} onSearchClick={() => setSearchOpen(true)} onSubscribeClick={() => setSubscribeOpen(true)} />} />
         <Route path="/articles" element={<Writing onSearchClick={() => setSearchOpen(true)} />} />
         <Route path="/articles/:slug" element={<Article articles={articles} onSearchClick={() => setSearchOpen(true)} />} />
+        <Route path="/tags/:tag" element={<Tag onSearchClick={() => setSearchOpen(true)} />} />
         <Route path="/about" element={<About onSearchClick={() => setSearchOpen(true)} />} />
       </Routes>
     </HashRouter>
