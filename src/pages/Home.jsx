@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { siteConfig, navigation } from '../config';
 import Logo from '../components/Logo';
 import ScrambleText from '../components/ScrambleText';
+import { formatDate } from '../utils/readTime';
 import articles from '../data/articles.json';
 
 export default function Home({ onSearchClick, onSubscribeClick }) {
@@ -72,7 +73,7 @@ export default function Home({ onSearchClick, onSubscribeClick }) {
                 <Link to={`/articles/${article.slug}`} className="block group">
                   <div className="flex items-baseline gap-3 mb-1">
                     <span className="text-gray-500 text-xs whitespace-nowrap">
-                      {article.date}
+                      {formatDate(article.date)}
                     </span>
                     <h3 className="text-lg text-terminal-cyan group-hover:underline">
                       {article.title}

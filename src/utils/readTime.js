@@ -1,3 +1,12 @@
+export function formatDate(dateStr) {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  });
+}
+
 export function calculateReadTime(content) {
   const text = content.replace(/<[^>]*>/g, '');
   const words = text.trim().split(/\s+/).length;
