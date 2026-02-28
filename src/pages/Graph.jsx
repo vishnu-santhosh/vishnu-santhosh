@@ -97,7 +97,8 @@ export default function Graph({ onSearchClick }) {
       .attr('r', d => radiusScale(d.linkCount))
       .attr('fill', d => d.linkCount > 0 ? 'url(#node-gradient)' : '#4b5563')
       .attr('stroke', d => d.linkCount > 0 ? '#22c55e' : '#6b7280')
-      .attr('stroke-width', 2);
+      .attr('stroke-width', 2)
+      .style('pointer-events', 'all');
 
     node.append('text')
       .attr('dy', d => radiusScale(d.linkCount) + 16)
@@ -105,6 +106,7 @@ export default function Graph({ onSearchClick }) {
       .attr('fill', '#9ca3af')
       .attr('font-size', '11px')
       .attr('font-family', 'monospace')
+      .style('pointer-events', 'none')
       .text(d => d.title.length > 22 ? d.title.substring(0, 20) + '...' : d.title);
 
     node.on('click', (event, d) => {
@@ -112,13 +114,14 @@ export default function Graph({ onSearchClick }) {
       navigate(`/articles/${d.id}`);
     });
 
-    node.on('mouseenter', (event, d) => {
-      setHoveredNode(d);
-    });
+    // Remove hover to prevent glitching
+    // node.on('mouseenter', (event, d) => {
+    //   setHoveredNode(d);
+    // });
 
-    node.on('mouseleave', () => {
-      setHoveredNode(null);
-    });
+    // node.on('mouseleave', () => {
+    //   setHoveredNode(null);
+    // });
 
     const drag = d3.drag()
       .on('start', (event, d) => {
